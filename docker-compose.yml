@@ -1,0 +1,19 @@
+mysql:
+ hostname: mysql
+ image: mariadb
+ container_name: mysql
+ environment:
+  MYSQL_ROOT_PASSWORD: MYSQL_DBPASS
+ ports:
+  - 3360:6606 
+keystone:
+ hostname: keystone
+ build: ./keystone
+ container_name: keystone
+ environment:
+  OS_TENANT_NAME: admin
+  OS_USERNAME: admin
+  OS_PASSWORD: ADMIN_PASS
+ links:
+  - mysql:mysql
+
